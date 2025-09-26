@@ -1,0 +1,6 @@
+<button id="add-button" onclick="location.href='articles/create'">追加</button>
+<ul>
+    <% @memos.each_with_index do |memo, id| %>
+        <li><a href="/articles/<%= id %>"><%= ERB::Util.html_escape(memo['title']) %></a></li>
+    <% end %>
+</ul>

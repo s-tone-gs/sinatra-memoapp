@@ -1,0 +1,73 @@
+body {
+  width: 560px;
+  margin: 20px auto;
+}
+
+.input-form {
+  width: 540px;
+}
+
+button {
+  padding: 6px 30px;
+  border-radius: 5px;
+  height: 40px;
+}
+
+#save-button, #update-button {
+  display: block;
+  margin: 0 auto;
+}
+
+#add-button {
+  position: relative;
+  left: 450px;
+  top: -60px;
+}
+
+#edit-button, #delete-button {
+  margin: 0 30px
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+#delete-form {
+}
+
+input, textarea {
+  width: 500px;
+  margin: 20px;
+  display: block;
+}
+
+input {
+  height: 50px;
+  font-size: 35px;  
+}
+
+textarea {
+  height: 200px;
+  font-size: 15px
+}
+
+li {
+  font-size: 25px;
+}
+
+article {
+  margin: 30px;
+}
+
+.title {
+  height: 50px;
+  font-size: 35px;  
+}
+
+.content { 
+  height: 200px;
+  font-size: 15px
+}
+
+
