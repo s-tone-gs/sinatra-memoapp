@@ -12,6 +12,7 @@ get '/' do
 end
 
 get '/articles' do
+  File.write(DATA_STORE_PATH, []) unless File.exist?(DATA_STORE_PATH)
   @memos = JSON.load_file(DATA_STORE_PATH)
   erb :index
 end
