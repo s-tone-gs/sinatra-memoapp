@@ -35,7 +35,7 @@ end
 
 post '/articles' do
   memos = JSON.load_file(DATA_STORE_PATH)
-  memos.push(sanitize_content(params))
+  memos.push(params)
   File.write(DATA_STORE_PATH, JSON.pretty_generate(memos))
   redirect '/articles'
 end
@@ -51,11 +51,7 @@ end
 patch '/articles/:id' do
   id = params['id'].to_i
   memos = JSON.load_file(DATA_STORE_PATH)
-  memos[id] = sanitize_content(params)
+  memos[id] = params
   File.write(DATA_STORE_PATH, JSON.pretty_generate(memos))
   redirect '/articles'
-end
-
-def sanitize_content(params)
-  params.transform_values { |v| ERB::Util.html_escape(v) }
 end
