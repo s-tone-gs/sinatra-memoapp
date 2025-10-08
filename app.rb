@@ -5,15 +5,15 @@ require 'sinatra/reloader'
 require 'json'
 require 'erb'
 
-DATA_STORE_PATH = 'data/memo.json'
+DATA_PATH = 'data/memo.json'
 
 get '/' do
   redirect '/articles'
 end
 
 get '/articles' do
-  File.write(DATA_STORE_PATH, []) unless File.exist?(DATA_STORE_PATH)
-  @memos = JSON.load_file(DATA_STORE_PATH)
+  File.write(DATA_PATH, {}) unless File.exist?(DATA_PATH)
+  @memos = JSON.load_file(DATA_PATH)
   erb :index
 end
 
@@ -22,36 +22,38 @@ get '/articles/create' do
 end
 
 get '/articles/:id/edit' do
-  @id = params['id'].to_i
-  @memo = JSON.load_file(DATA_STORE_PATH)[@id]
+  @id = params['id']
+  @memo = JSON.load_file(DATA_PATH)[@id]
   erb :edit
 end
 
 get '/articles/:id' do
-  @id = params['id'].to_i
-  @memo = JSON.load_file(DATA_STORE_PATH)[@id]
+  @id = params['id']
+  @memo = JSON.load_file(DATA_PATH)[@id]
   erb :show
 end
 
 post '/articles' do
-  memos = JSON.load_file(DATA_STORE_PATH)
-  memos.push(params)
-  File.write(DATA_STORE_PATH, JSON.pretty_generate(memos))
+  memos = JSON.load_file(DATA_PATH)
+  # 連番を生成
+  new_id = memos.keys.max.to_i + 1
+  memos[new_id] = params
+  File.write(DATA_PATH, JSON.pretty_generate(memos))
   redirect '/articles'
 end
 
 delete '/articles/:id' do
-  id = params['id'].to_i
-  memos = JSON.load_file(DATA_STORE_PATH)
-  memos.delete_at(id)
-  File.write(DATA_STORE_PATH, JSON.pretty_generate(memos))
+  id = params['id']
+  memos = JSON.load_file(DATA_PATH)
+  memos.delete(id)
+  File.write(DATA_PATH, JSON.pretty_generate(memos))
   redirect '/articles'
 end
 
 patch '/articles/:id' do
-  id = params['id'].to_i
-  memos = JSON.load_file(DATA_STORE_PATH)
+  id = params['id']
+  memos = JSON.load_file(DATA_PATH)
   memos[id] = params
-  File.write(DATA_STORE_PATH, JSON.pretty_generate(memos))
+  File.write(DATA_PATH, JSON.pretty_generate(memos))
   redirect '/articles'
 end
