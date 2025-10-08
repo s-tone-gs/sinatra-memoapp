@@ -7,26 +7,26 @@ body {
   width: 540px;
 }
 
-button, #add-button {
+button, .add-button {
   background-color: #F2F2F2;
   padding: 6px 30px;
   border-radius: 5px;
   height: 40px;
 }
 
-#save-button, #update-button {
+.save-button, .update-button {
   display: block;
   margin: 0 auto;
 }
 
-#add-button {
+.add-button {
   border: 2px solid;
   position: relative;
   left: 450px;
   top: -60px;
 }
 
-#edit-button, #delete-button {
+.edit-button, .delete-button {
   margin: 0 30px
 }
 
@@ -35,7 +35,7 @@ button, #add-button {
   justify-content: center;
 }
 
-#delete-form {
+.delete-form {
 }
 
 input, textarea {

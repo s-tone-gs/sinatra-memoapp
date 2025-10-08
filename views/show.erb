@@ -2,10 +2,10 @@
   <h2 class="title"><%= ERB::Util.html_escape(@memo['title']) %></h2>
   <p class="content"><%= ERB::Util.html_escape(@memo['content']) %></p>
   <div class="buttons">
-    <button id="edit-button" onclick="location.href='/articles/<%= @id %>/edit'">編集</button>
-    <form id="delete-form" action="/articles/<%= @id %>" method="POST">
+    <button class="edit-button" onclick="location.href='/articles/<%= @id %>/edit'">編集</button>
+    <form class="delete-form" action="/articles/<%= @id %>" method="POST">
       <input type="hidden" name=_method value="DELETE">
-      <button id="delete-button" type="submit">削除</button>
+      <button class="delete-button" type="submit">削除</button>
     </form>
   </div>
 </article>
