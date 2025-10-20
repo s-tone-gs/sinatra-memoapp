@@ -2,7 +2,6 @@
 
 require 'sinatra'
 require 'sinatra/reloader'
-require 'json'
 require 'erb'
 
 DATA_PATH = 'data/memo.json'
