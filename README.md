@@ -18,8 +18,9 @@
 1. データベースの準備を行います
     1. PostgreSQLをインストールしてください
     2. PostgreSQLにログインし、以下を実行してください 
-    `CREATE DATABASE memoapp`
+    `CREATE DATABASE memoapp;`
     3. example.envファイルをコピーし、.envファイルを作成してください
+    4. .envファイルにアクセスするデータベース名、ユーザー名、パスワードを記述してください
     4. `ruby create_table.rb`を実行してください
 3. アプリを起動させる
 `bundle exec ruby app.rb`
