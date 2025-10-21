@@ -15,9 +15,9 @@
 `git clone -b memoapp https://github.com/s-tone-gs/sinatra-memoapp.git`
 2. gemをインストール
 `bundle install`
-1. データベースの準備を行いま
+1. データベースの準備を行います
     1. PostgreSQLをインストールしてください
-    2. PostgreSQLにログインし、以下を実行してください
+    2. PostgreSQLにログインし、以下を実行してください 
     `CREATE DATABASE memoapp`
     3. example.envファイルをコピーし、.envファイルを作成してください
     4. `ruby create_table.rb`を実行してください
