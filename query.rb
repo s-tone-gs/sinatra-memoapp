@@ -3,7 +3,7 @@
 require 'pg'
 require 'dotenv/load'
 
-DB_ENV = { dbname: ENV['DB_NAME'], user: ENV['DB_USER'], password: ENV['DB_PASSWORD'] }.frozen
+DB_ENV = { dbname: ENV['DB_NAME'], user: ENV['DB_USER'], password: ENV['DB_PASSWORD'] }.freeze
 
 def select_all
   PG.connect(**DB_ENV) do |conn|
@@ -21,19 +21,19 @@ def select(params)
       conn.exec_params(sql, bind_values)
     end
   rescue PG::Error => e
-    puts e.message
+    puts e
   end
 end
 
 def store(params)
-  sql = 'INSERT INTO memos (title, content) bind_values ($1, $2)'
+  sql = 'INSERT INTO memos (title, content) values ($1, $2)'
   bind_values = [params['title'], params['content']]
   begin
     PG.connect(**DB_ENV) do |conn|
       conn.exec_params(sql, bind_values)
     end
   rescue PG::Error => e
-    puts e.massage
+    puts e
   end
 end
 
@@ -45,7 +45,7 @@ def update(params)
       conn.exec_params(sql, bind_values)
     end
   rescue PG::Error => e
-    puts e.message
+    puts e
   end
 end
 
@@ -57,6 +57,6 @@ def destroy(params)
       conn.exec_params(sql, bind_values)
     end
   rescue PG::Error => e
-    puts e.message
+    puts e
   end
 end
