@@ -13,9 +13,10 @@ def select_all
   PG.connect(**DB_ENV) do |conn|
     conn.exec(<<~SQL)
                 SELECT *
-                FROM memos;
+                FROM memos
+                ORDER BY id ASC;
               SQL
-    end
+  end
 end
 
 def select(params)
