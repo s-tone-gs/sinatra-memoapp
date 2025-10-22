@@ -1,10 +1,9 @@
 <article>
-  <% memo = @memo.first %>
-  <h2 class="title"><%= ERB::Util.html_escape(memo['title']) %></h2>
-  <p class="content"><%= ERB::Util.html_escape(memo['content']) %></p>
+  <h2 class="title"><%= ERB::Util.html_escape(@memo['title']) %></h2>
+  <p class="content"><%= ERB::Util.html_escape(@memo['content']) %></p>
   <div class="buttons">
-    <a class="edit-button" href="/articles/<%= memo['id'] %>/edit">編集</a>
-    <form class="delete-form" action="/articles/<%= memo['id'] %>" method="POST">
+    <a class="edit-button" href="/articles/<%= @memo['id'] %>/edit">編集</a>
+    <form class="delete-form" action="/articles/<%= @memo['id'] %>" method="POST">
       <input type="hidden" name=_method value="DELETE">
       <button class="delete-button" type="submit">削除</button>
     </form>

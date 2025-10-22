@@ -1,7 +1,6 @@
-<% memo = @memo.first %>
-<form class="input-form" action="/articles/<%= memo['id'] %>" method="POST">
-  <input type="text" name="title" value="<%= ERB::Util.html_escape(memo['title']) %>" required>
-  <textarea name="content"><%= ERB::Util.html_escape(memo['content']) %></textarea>
+<form class="input-form" action="/articles/<%= @memo['id'] %>" method="POST">
+  <input type="text" name="title" value="<%= ERB::Util.html_escape(@memo['title']) %>" required>
+  <textarea name="content"><%= ERB::Util.html_escape(@memo['content']) %></textarea>
   <input type=hidden name=_method value="PATCH">
   <button type="submit" class="update-button">変更</button>
 </form>

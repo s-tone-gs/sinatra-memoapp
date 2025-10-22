@@ -19,12 +19,12 @@ get '/articles/create' do
 end
 
 get '/articles/:id/edit' do
-  @memo = select(params)
+  @memo = select(params).first
   erb :edit
 end
 
 get '/articles/:id' do
-  @memo = select(params)
+  @memo = select(params).first
   erb :show
 end
 
