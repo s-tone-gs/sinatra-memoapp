@@ -3,7 +3,11 @@
 require 'pg'
 require 'dotenv/load'
 
-DB_ENV = { dbname: ENV['DB_NAME'], user: ENV['DB_USER'], password: ENV['DB_PASSWORD'] }.freeze
+DB_ENV = {
+  dbname: ENV['DB_NAME'],
+  user: ENV['DB_USER'],
+  password: ENV['DB_PASSWORD']
+}.freeze
 
 def select_all
   PG.connect(**DB_ENV) do |conn|
