@@ -30,6 +30,10 @@ button, .add-button, .edit-button {
   margin: 0 30px
 }
 
+.edit-button {
+  height: 25px;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
