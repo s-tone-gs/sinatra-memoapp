@@ -3,20 +3,18 @@
 require 'pg'
 require 'dotenv/load'
 
-DB_ENV = {
+CONNECTION = PG.connect(
   dbname: ENV['DB_NAME'],
   user: ENV['DB_USER'],
   password: ENV['DB_PASSWORD']
-}.freeze
+)
 
 def select_all
-  PG.connect(**DB_ENV) do |conn|
-    conn.exec(<<~SQL)
-      SELECT *
-      FROM memos
-      ORDER BY id ASC;
-    SQL
-  end
+  CONNECTION.exec(<<~SQL)
+    SELECT *
+    FROM memos
+    ORDER BY id ASC;
+  SQL
 end
 
 def select(params)
@@ -26,9 +24,7 @@ def select(params)
     WHERE id = $1;
   SQL
   bind_values = params.values_at('id')
-  PG.connect(**DB_ENV) do |conn|
-    conn.exec_params(sql, bind_values)
-  end
+  CONNECTION.exec_params(sql, bind_values)
 end
 
 def store(params)
@@ -38,9 +34,7 @@ def store(params)
     VALUES ($1, $2);
   SQL
   bind_values = params.values_at('title', 'content')
-  PG.connect(**DB_ENV) do |conn|
-    conn.exec_params(sql, bind_values)
-  end
+  CONNECTION.exec_params(sql, bind_values)
 end
 
 def update(params)
@@ -50,9 +44,7 @@ def update(params)
     WHERE id = $3;
   SQL
   bind_values = params.values_at('title', 'content', 'id')
-  PG.connect(**DB_ENV) do |conn|
-    conn.exec_params(sql, bind_values)
-  end
+  CONNECTION.exec_params(sql, bind_values)
 end
 
 def destroy(params)
@@ -61,7 +53,5 @@ def destroy(params)
     WHERE id = $1;
   SQL
   bind_values = params.values_at('id')
-  PG.connect(**DB_ENV) do |conn|
-    conn.exec_params(sql, bind_values)
-  end
+  CONNECTION.exec_params(sql, bind_values)
 end
