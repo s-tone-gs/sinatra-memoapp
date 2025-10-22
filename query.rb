@@ -25,7 +25,7 @@ def select(params)
           FROM memos
           WHERE id = $1;
         SQL
-  bind_values = [params['id']]
+  bind_values = params.values_at('id')
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
   end
@@ -37,7 +37,7 @@ def store(params)
             (title, content)
           VALUES ($1, $2);
         SQL
-  bind_values = [params['title'], params['content']]
+  bind_values = params.values_at('title', 'content')
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
   end
@@ -49,7 +49,7 @@ def update(params)
           SET title = $1, content = $2
           WHERE id = $3;
         SQL
-  bind_values = [params['title'], params['content'], params['id']]
+  bind_values = params.values_at('title', 'content', 'id')
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
   end
@@ -60,7 +60,7 @@ def destroy(params)
           DELETE FROM memos
           WHERE id = $1;
         SQL
-  bind_values = [params['id']]
+  bind_values = params.values_at('id')
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
   end
