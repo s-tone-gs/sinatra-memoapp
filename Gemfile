@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "sinatra"
+gem 'sinatra'
 
-gem "rackup", "~> 2.2"
-gem "puma", "~> 7.0"
+gem 'puma', '~> 7.0'
+gem 'debug'
+gem 'rackup', '~> 2.2'
 gem 'sinatra-contrib'
-gem "debug"
+gem 'dotenv'
+gem 'pg'
 group :development do
   gem 'rubocop-fjord', require: false
   gem 'erb_lint', require: false
