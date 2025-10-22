@@ -7,12 +7,19 @@ DB_ENV = { dbname: ENV['DB_NAME'], user: ENV['DB_USER'], password: ENV['DB_PASSW
 
 def select_all
   PG.connect(**DB_ENV) do |conn|
-    conn.exec('SELECT * FROM memos')
-  end
+    conn.exec(<<~SQL)
+                SELECT *
+                FROM memos;
+              SQL
+    end
 end
 
 def select(params)
-  sql = 'SELECT * FROM memos WHERE id = $1;'
+  sql = <<~SQL
+          SELECT *
+          FROM memos
+          WHERE id = $1;
+        SQL
   bind_values = [params['id']]
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
@@ -20,7 +27,11 @@ def select(params)
 end
 
 def store(params)
-  sql = 'INSERT INTO memos (title, content) values ($1, $2)'
+  sql = <<~SQL
+          INSERT INTO memos
+            (title, content)
+          VALUES ($1, $2);
+        SQL
   bind_values = [params['title'], params['content']]
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
@@ -28,7 +39,11 @@ def store(params)
 end
 
 def update(params)
-  sql = 'UPDATE memos SET title=$1, content=$2 WHERE id = $3'
+  sql = <<~SQL
+          UPDATE memos
+          SET title = $1, content = $2
+          WHERE id = $3;
+        SQL
   bind_values = [params['title'], params['content'], params['id']]
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
@@ -36,7 +51,10 @@ def update(params)
 end
 
 def destroy(params)
-  sql = 'DELETE FROM memos WHERE id = $1'
+  sql = <<~SQL
+          DELETE FROM memos
+          WHERE id = $1;
+        SQL
   bind_values = [params['id']]
   PG.connect(**DB_ENV) do |conn|
     conn.exec_params(sql, bind_values)
